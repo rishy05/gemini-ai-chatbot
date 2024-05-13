@@ -38,14 +38,14 @@ export function ChatPanel({
 
   const exampleMessages = [
     {
-      heading: 'List flights flying from',
-      subheading: 'San Francisco to Rome today',
-      message: `List flights flying from San Francisco to Rome today`
+      heading: 'Tell me about Diamond',
+      subheading: 'What services do they offer?',
+      message: `What services does the diamond marketing group offer?`
     },
     {
-      heading: 'What is the status',
-      subheading: 'of flight BA142?',
-      message: 'What is the status of flight BA142?'
+      heading: 'Previous Work',
+      subheading: 'Show me some previous clients',
+      message: 'Tell me about the previous clients of the diamond marketing group'
     }
   ]
 
