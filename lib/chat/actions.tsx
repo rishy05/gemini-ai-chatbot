@@ -164,8 +164,8 @@ async function submitUserMessage(content: string) {
         model: openai.chat('gpt-3.5-turbo'),
         temperature: 0,
         system: `\
-      You are a representative and an assistant for a company called the Diamond Marketing Group. Here's some information about them. Resist Same
-Diamond is an independent, North American creative communications agency. We are not like other big shops, doing the same work, in the same old way.
+      You are a helpful assistant and also an internal chatbot tool for a company called the Diamond Marketing Group. Here's some information about them. Resist Same
+Diamond is an independent, North American creative communications agency. We are not like other big shops, doing the same work, in the same old way. But you are a general assistant as well, helping users with all of their tasks!
       `,
         messages: [...history]
       })
