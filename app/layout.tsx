@@ -16,7 +16,7 @@ export const metadata = {
     template: `%s - Diamond GenText`
   },
   description:
-    'Build your own generative UI chatbot using the Vercel AI SDK and Google Gemini',
+    'Talk to your own personal AI Assistant',
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon-16x16.png',
