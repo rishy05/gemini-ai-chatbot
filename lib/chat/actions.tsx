@@ -33,7 +33,7 @@ import { ListHotels } from '@/components/hotels/list-hotels'
 import { Destinations } from '@/components/flights/destinations'
 import { Video } from '@/components/media/video'
 import { rateLimit } from './ratelimit'
-
+export const maxDuration = 60;
 const genAI = new GoogleGenerativeAI(
     process.env.GOOGLE_GENERATIVE_AI_API_KEY || ''
 )
