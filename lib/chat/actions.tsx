@@ -163,15 +163,6 @@ async function submitUserMessage(content: string) {
       const result = await experimental_streamText({
         model: openai.chat('gpt-3.5-turbo'),
         temperature: 0,
-        tools: {
-          noteCard: {
-            description: 'Display a card of notes where notes can be overwritten or appended. You use this tool to take notes of the key information that the user is talking about that you think should be noted down.',
-            parameters: z.object({
-              notes: z.array(z.string()).describe('Array of note strings to display.'),
-              mode: z.enum(['overwrite', 'append']).describe('Mode to either overwrite existing notes or append to them.')
-            })
-          }
-        },
         system: `\
       You are a representative and an assistant for a company called the Diamond Marketing Group. Here's some information about them. Resist Same
 Diamond is an independent, North American creative communications agency. We are not like other big shops, doing the same work, in the same old way.
@@ -209,7 +200,7 @@ Diamond is an independent, North American creative communications agency. We are
             // Assuming you have a component <NoteCard> that takes props 'notes' and 'mode'
             uiStream.update(
                 <BotCard>
-                  <NoteCard notes={args.notes} mode={args.mode} />
+                  <p>yolo</p>
                 </BotCard>
             );
 
