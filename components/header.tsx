@@ -30,7 +30,7 @@ async function UserOrLogin() {
         </>
       ) : (
         <Link href="/new" rel="nofollow">
-          <img className="size-6" src="/images/gemini.png" alt="gemini logo" />
+          <img className="size-6 object-contain" src="/images/gemini.png" alt="gemini logo" />
         </Link>
       )}
       <div className="flex items-center">
