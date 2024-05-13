@@ -161,11 +161,10 @@ async function submitUserMessage(content: string) {
   ;(async () => {
     try {
       const result = await experimental_streamText({
-        model: openai.chat('gpt-3.5-turbo'),
+        model: openai.chat('gpt-4-turbo'),
         temperature: 0,
         system: `\
-      You are a helpful assistant and also an internal chatbot tool for a company called the Diamond Marketing Group. Here's some information about them. Resist Same
-Diamond is an independent, North American creative communications agency. We are not like other big shops, doing the same work, in the same old way. But you are a general assistant as well, helping users with all of their tasks!
+      You are a helpful assistant
       `,
         messages: [...history]
       })
