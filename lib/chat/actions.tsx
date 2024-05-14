@@ -158,14 +158,12 @@ async function submitUserMessage(content: string) {
   const messageStream = createStreamableUI(null)
   const uiStream = createStreamableUI()
 
-  ;(async () => {
+  ;await (async () => {
     try {
       const result = await experimental_streamText({
-        model: openai.chat('gpt-4-turbo'),
+        model: openai.chat('gpt-4o-2024-05-13'),
         temperature: 0,
-        system: `\
-      You are a helpful assistant
-      `,
+        system: `You are a helpful assistant`,
         messages: [...history]
       })
 
@@ -173,13 +171,13 @@ async function submitUserMessage(content: string) {
       spinnerStream.done(null)
 
       for await (const delta of result.fullStream) {
-        const { type } = delta
+        const {type} = delta
 
         if (type === 'text-delta') {
-          const { textDelta } = delta
+          const {textDelta} = delta
 
           textContent += textDelta
-          messageStream.update(<BotMessage content={textContent} />)
+          messageStream.update(<BotMessage content={textContent}/>)
 
           aiState.update({
             ...aiState.get(),
@@ -193,7 +191,7 @@ async function submitUserMessage(content: string) {
             ]
           })
         } else if (type === 'tool-call') {
-          const { toolName, args } = delta
+          const {toolName, args} = delta
           // Handle the 'noteCard' tool call
           if (toolName === 'noteCard') {
             // Assuming you have a component <NoteCard> that takes props 'notes' and 'mode'
