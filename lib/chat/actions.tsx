@@ -11,6 +11,7 @@ import {
   getAIState,
   createStreamableValue
 } from 'ai/rsc'
+
 import { openai } from '@ai-sdk/openai';
 import { BotCard, BotMessage } from '@/components/stocks'
 import { nanoid, sleep } from '@/lib/utils'
@@ -33,6 +34,8 @@ import { ListHotels } from '@/components/hotels/list-hotels'
 import { Destinations } from '@/components/flights/destinations'
 import { Video } from '@/components/media/video'
 import { rateLimit } from './ratelimit'
+import { stringify } from 'querystring';
+const fs = require('fs');
 export const maxDuration = 60;
 const genAI = new GoogleGenerativeAI(
     process.env.GOOGLE_GENERATIVE_AI_API_KEY || ''
@@ -91,7 +94,6 @@ async function describeImage(imageBase64: string) {
 
         const result = await model.generateContent([prompt, image])
         text = result.response.text()
-        console.log(text)
       }
 
       spinnerStream.done(null)
@@ -128,13 +130,15 @@ async function describeImage(imageBase64: string) {
   }
 }
 
+let conversationHistory = ''
 async function submitUserMessage(content: string) {
   'use server'
 
   await rateLimit()
-
   const aiState = getMutableAIState()
 
+  conversationHistory += `User: ${content}\n\n`;
+  const newContent = `${conversationHistory}\n\nUser: ${content}`
   aiState.update({
     ...aiState.get(),
     messages: [
@@ -142,7 +146,7 @@ async function submitUserMessage(content: string) {
       {
         id: nanoid(),
         role: 'user',
-        content: `${aiState.get().interactions.join('\n\n')}\n\n${content}`
+        content: conversationHistory
       }
     ]
   })
@@ -151,7 +155,10 @@ async function submitUserMessage(content: string) {
     role: message.role,
     content: message.content
   }))
-  // console.log(history)
+
+
+  console.log(conversationHistory)
+
 
   const textStream = createStreamableValue('')
   const spinnerStream = createStreamableUI(<SpinnerMessage />)
@@ -159,7 +166,7 @@ async function submitUserMessage(content: string) {
   const uiStream = createStreamableUI()
 
   ;await (async () => {
-    console.log(messages)
+
     try {
       const result = await experimental_streamText({
         model: google.generativeAI('models/gemini-1.0-pro-001'),
