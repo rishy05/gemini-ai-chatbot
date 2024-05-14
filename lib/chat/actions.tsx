@@ -139,6 +139,7 @@ async function submitUserMessage(content: string) {
 
   conversationHistory += `User: ${content}\n\n`;
   const newContent = `${conversationHistory}\n\nUser: ${content}`
+  console.log(aiState.get().messages)
   aiState.update({
     ...aiState.get(),
     messages: [
@@ -157,7 +158,7 @@ async function submitUserMessage(content: string) {
   }))
 
 
-  console.log(conversationHistory)
+  // console.log(conversationHistory)
 
 
   const textStream = createStreamableValue('')
