@@ -159,9 +159,10 @@ async function submitUserMessage(content: string) {
   const uiStream = createStreamableUI()
 
   ;await (async () => {
+    console.log(messages)
     try {
       const result = await experimental_streamText({
-        model: openai.chat('gpt-4o-2024-05-13'),
+        model: google.generativeAI('models/gemini-1.0-pro-001'),
         temperature: 0,
         system: `You are a helpful assistant`,
         messages: [...history]
