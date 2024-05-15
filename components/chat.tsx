@@ -14,6 +14,7 @@ import { useAIState, useUIState } from 'ai/rsc'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
+import { LlmSelect } from './ui/llm-selector'
 
 export interface ChatProps extends React.ComponentProps<'div'> {
   initialMessages?: Message[]
@@ -64,6 +65,7 @@ export function Chat({ id, className, session, missingKeys }: ChatProps) {
       className="group w-full overflow-auto pl-0 peer-[[data-state=open]]:lg:pl-[250px] peer-[[data-state=open]]:xl:pl-[300px]"
       ref={scrollRef}
     >
+      <div><LlmSelect></LlmSelect></div>
       <div className={cn('pb-[200px] pt-4', className)} ref={messagesRef}>
         {messages.length ? (
           <ChatList messages={messages} isShared={false} session={session} />
