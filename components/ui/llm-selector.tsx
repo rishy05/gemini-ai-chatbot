@@ -14,9 +14,9 @@ export function LlmSelect(){
     <SelectValue placeholder="Model" />
   </SelectTrigger>
   <SelectContent>
-    <SelectItem value="light">GPT 3.5</SelectItem>
-    <SelectItem value="dark">GPT 4</SelectItem>
-    <SelectItem value="system">GPT 4 Trubo</SelectItem>
-    <SelectItem value="system">GPT 4o</SelectItem>
+    <SelectItem value="GPT 3.5">GPT 3.5</SelectItem>
+    <SelectItem value="GPT 4">GPT 4</SelectItem>
+    <SelectItem value="GPT 4 Turbo">GPT 4 Turbo</SelectItem>
+    <SelectItem value="GPT 4o">GPT 4o</SelectItem>
   </SelectContent>
 </Select>)}
